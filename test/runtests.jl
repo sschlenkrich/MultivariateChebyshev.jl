@@ -1,6 +1,14 @@
-using MultivariateChebyshev
+using Revise
+
+using Logging
 using Test
 
+@info "Start testing MultivariateChebyshev package."
+
 @testset "MultivariateChebyshev.jl" begin
-    # Write your tests here.
+
+    include("matrix_methods.jl")
+
 end
+
+@info "Finished testing MultivariateChebyshev package."
