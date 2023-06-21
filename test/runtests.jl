@@ -5,9 +5,11 @@ using Test
 
 @info "Start testing MultivariateChebyshev package."
 
-@testset "MultivariateChebyshev.jl" begin
+@testset verbose=true "MultivariateChebyshev.jl" begin
 
     include("matrix_methods.jl")
+    include("chebychev.jl")
+    include("performance.jl")
 
 end
 
