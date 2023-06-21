@@ -7,7 +7,7 @@
         b::Union{AbstractVector, Number} = 1.0,
         )
 
-Transform input x from standard domain [-1, 1] to general
+Transform input x from standard domain `[-1, 1]` to general
 hyper-rectangular domain.
 """
 function chebyshev_transform(
@@ -33,7 +33,7 @@ end
         )
 
 Transform input y from general hyper-rectangular domain to
-standard domain [-1, 1].
+standard domain `[-1, 1]`.
 """
 function chebyshev_inverse_transform(
     y::AbstractVecOrMat,
@@ -88,7 +88,7 @@ end
 Calculate the Chebyshev polynomials T_0(x), ..., T_N(x)
 for up to maximum degree N equal to `max_degree`.
 
-Input `x` can be a float or a vector in the range [-1, 1] (element-wise).
+Input `x` can be a float or a vector in the range `[-1, 1]` (element-wise).
 
 Returns a float if input `x` is a float or a vector if input `x` is a
 vector.
@@ -276,7 +276,7 @@ of dimensions. Input is assumed from general hyper-rectangular domain.
 
 `a` and `b` are float or vector representing the lower and upper boundaries of
 the interpolation domain.
-If `a` or `b` is an array then we require `length([a|b])` equal to `size(y)[end]`.
+If `a` or `b` is an array then we require `length(a|b)` and equal to `size(y)[end]`.
 
 `matmul` may be a Python-like matmul function. Alternatively, `batchmul`
 is used for tensor multiplication.

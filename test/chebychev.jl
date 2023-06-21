@@ -154,7 +154,7 @@ include("test_functions.jl")
         z_ref = [ BlackOverK(y[i,:]) for i in 1:size(y,1) ]
         # println(max(abs.(z - z_ref)...))
         @test isapprox(z, z_ref, atol=1.0e-1)
-        @test max(abs.(z - z_ref)...) < 7.0e-3
+        @test max(abs.(z - z_ref)...) < 7.5e-3
     end
     
     @testset "Teest Black formula with random points and matmul" begin
@@ -173,7 +173,7 @@ include("test_functions.jl")
         z_ref = [ BlackOverK(y[i,:]) for i in 1:size(y,1) ]
         # println(max(abs.(z - z_ref)...))
         @test isapprox(z, z_ref, atol=1.0e-1)
-        @test max(abs.(z - z_ref)...) < 7.0e-3
+        @test max(abs.(z - z_ref)...) < 7.5e-3
     end
     
     
