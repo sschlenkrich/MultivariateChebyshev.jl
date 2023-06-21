@@ -16,6 +16,12 @@ function chebyshev_transform(
     b::Union{AbstractVector, Number} = 1.0,
     )
     #
+    if isa(a, AbstractVector)
+        a = a'  # ensure proper broadcasting for x
+    end
+    if isa(b, AbstractVector)
+        b = b'
+    end
     return a .+ 0.5 .* (b .- a) .* (x .+ 1.0)
 end
 
@@ -35,6 +41,12 @@ function chebyshev_inverse_transform(
     b::Union{AbstractVector, Number} = 1.0,
     )
     #
+    if isa(a, AbstractVector)
+        a = a'  # ensure proper broadcasting for x
+    end
+    if isa(b, AbstractVector)
+        b = b'
+    end
     return 2 ./ (b.-a) .* (y.-a) .- 1.0
 end
 
