@@ -70,7 +70,19 @@ using Test
         B = rand(4,5)
         C = MultivariateChebyshev.matmul(A, B)
         @test isapprox(C, A * B, atol=1.0e-15)
-        # add more specific tests here...
+        C_ref = 3.0*ones(5,5,4,2)
+        @test MultivariateChebyshev.matmul(ones(5,5,4,3), ones(5,5,3,2)) == C_ref
+        @test MultivariateChebyshev.matmul(ones(5,1,4,3), ones(5,5,3,2)) == C_ref
+        @test MultivariateChebyshev.matmul(ones(1,5,4,3), ones(5,5,3,2)) == C_ref
+        @test MultivariateChebyshev.matmul(ones(5,5,4,3), ones(5,1,3,2)) == C_ref
+        @test MultivariateChebyshev.matmul(ones(5,5,4,3), ones(1,5,3,2)) == C_ref
+        @test MultivariateChebyshev.matmul(ones(5,1,4,3), ones(1,5,3,2)) == C_ref
+        @test MultivariateChebyshev.matmul(ones(1,5,4,3), ones(5,1,3,2)) == C_ref
+        @test MultivariateChebyshev.matmul(ones(1,5,4,3), ones(1,5,3,2)) == 3.0*ones(1,5,4,2)
+        @test MultivariateChebyshev.matmul(ones(5,1,4,3), ones(5,1,3,2)) == 3.0*ones(5,1,4,2)
+        @test MultivariateChebyshev.matmul(ones(1,1,4,3), ones(1,1,3,2)) == 3.0*ones(1,1,4,2)
+        @test MultivariateChebyshev.matmul(ones(5,4,3), ones(5,3,2)) == 3.0*ones(5,4,2)
+        @test MultivariateChebyshev.matmul(ones(4,3), ones(3,2)) == 3.0*ones(4,2)
     end
 
     @testset "batchmul multiplications." begin
@@ -78,7 +90,20 @@ using Test
         B = rand(4,5)
         C = MultivariateChebyshev.batchmul(A, B)
         @test isapprox(C, A * B, atol=1.0e-15)
-        # add more specific tests here...
+        #
+        C_ref = 3.0*ones(4,2,5,5)
+        @test MultivariateChebyshev.batchmul(ones(4,3,5,5), ones(3,2,5,5)) == C_ref
+        @test MultivariateChebyshev.batchmul(ones(4,3,5,1), ones(3,2,5,5)) == C_ref
+        @test MultivariateChebyshev.batchmul(ones(4,3,1,5), ones(3,2,5,5)) == C_ref
+        @test MultivariateChebyshev.batchmul(ones(4,3,5,5), ones(3,2,5,1)) == C_ref
+        @test MultivariateChebyshev.batchmul(ones(4,3,5,5), ones(3,2,1,5)) == C_ref
+        @test MultivariateChebyshev.batchmul(ones(4,3,5,1), ones(3,2,1,5)) == C_ref
+        @test MultivariateChebyshev.batchmul(ones(4,3,1,5), ones(3,2,5,1)) == C_ref
+        @test MultivariateChebyshev.batchmul(ones(4,3,1,5), ones(3,2,1,5)) == 3.0*ones(4,2,1,5)
+        @test MultivariateChebyshev.batchmul(ones(4,3,5,1), ones(3,2,5,1)) == 3.0*ones(4,2,5,1)
+        @test MultivariateChebyshev.batchmul(ones(4,3,1,1), ones(3,2,1,1)) == 3.0*ones(4,2,1,1)
+        @test MultivariateChebyshev.batchmul(ones(4,3,5), ones(3,2,5)) == 3.0*ones(4,2,5)
+        @test MultivariateChebyshev.batchmul(ones(4,3), ones(3,2)) == 3.0*ones(4,2)
     end
 
 end
